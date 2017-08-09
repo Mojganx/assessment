@@ -11,10 +11,11 @@ class BatchItem extends PureComponent {
     const { name, photo, evaluation } = this.props
 
     return(
-      <article className="batch">
-        <h1>{ name }</h1>
-         <img src={ this.props.photo } />
-        </article>
+      <div className="batch">
+        <h1 className="name">{ name }</h1>
+        <img src={ this.props.photo } />
+        <div className={this.props.evaluation}> </div>
+      </div>
     )
   }
 }
