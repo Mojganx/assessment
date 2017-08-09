@@ -4,10 +4,18 @@ import Title from '../components/Title'
 import FlatButton from 'material-ui/FlatButton'
 import BatchItem from './BatchItem'
 import BatchEditor from './BatchEditor'
+import action from '../actions/batch/setChosenStudent';
 
 class BatchContainer extends PureComponent {
-  renderBatch(batch, index) {
+  constructor(props) {
+    super(props);
+    this.state = {
+      chosenStudent: '',
+    }
+  }
 
+
+  renderBatch(batch, index) {
     return <BatchItem key={index} { ...batch } />
   }
 
@@ -34,29 +42,28 @@ class BatchContainer extends PureComponent {
 
 chooseStudent() {
   let category = this.chooseCategory();
-  let studentCategory = [];
+  let studentCategory = this.props.batch.filter(student => student.evaluation === category);
 
-  this.props.batch.map(student => {
-    if (student.evaluation === category) {
-      studentCategory.push(student)
-    }
-  });
+  let randomNumber = Math.floor(Math.random() * studentCategory.length);
+  let chosenStudent = studentCategory[randomNumber];
+  // this.setState({chosenStudent : chosenStudent});
+  // hier roep  je je action aan een geef je de chosenStudent als argument mee!!
+  this.props.dispatch(action(chosenStudent));
 
-  let randomStudent = Math.floor(Math.random() * studentCategory.length);
-  let askStudent = studentCategory[randomStudent].name;
-
-  console.log('student', askStudent, studentCategory[randomStudent].evaluation)
 }
 
 renderStudents() {
-  this.props.batch.map(this.renderBatch)
+  if (this.props.setStudent.name){
+    return <BatchItem key='index' { ...this.props.setStudent } />
+  }else {
+    return this.props.batch.map(this.renderBatch)
+  }
+
 }
 
 getCountStudents(color) {
 
-  let count = this.props.batch.filter(function(student) {
-    return student.evaluation === color;
-  }).length;
+  let count = this.props.batch.filter(student => student.evaluation === color).length;
 
   let percentage = count / 10 * 100;
   percentage = percentage + " %";
@@ -78,7 +85,7 @@ getCountStudents(color) {
       </header>
       <th><table>
       <main>
-        { this.props.batch.map(this.renderBatch) }
+        { this.renderStudents()}
       </main>
       </table></th>
       <FlatButton label="Ask a Question" onClick={this.handleOnClick.bind(this)} />
@@ -87,7 +94,7 @@ getCountStudents(color) {
   }
 }
 
-const mapStateToProps = ({ batch}) => ({ batch})
+const mapStateToProps = ({ batch, setStudent}) => ({ batch, setStudent})
 
 
 export default connect(mapStateToProps) (BatchContainer)
