@@ -44,6 +44,7 @@ getChildContext(){
         <div className="App-header">
         </div>
           <BatchContainer batch={ batch } />
+          // { this.props.children }
       </div>
       </MuiThemeProvider>
     );

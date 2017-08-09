@@ -1,18 +1,12 @@
 import React, { PureComponent } from 'react'
 import Title from '../components/Title'
 import FlatButton from 'material-ui/FlatButton'
+import BatchItem from './BatchItem'
 
 class BatchContainer extends PureComponent {
   renderBatch(batch, index) {
-    console.log('renderBatch', batch, index);
-    return (
-      <article className="batch">
-        <h1>{ batch.name }</h1>
-        <div>
-          <img src={ batch.photo } />
-        </div>
-      </article>
-    )
+
+    return <BatchItem key={index} { ...batch } />
   }
 
   handleOnClick(event) {
