@@ -1,5 +1,5 @@
 import batch from './batch';
-import setStudent from './setStudent';
+import setStudent from './studentReducers';
 
 export default {
   batch,

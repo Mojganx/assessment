@@ -47,7 +47,6 @@ const batch = [
 const initialState = batch
 
 export default (state = initialState, { type, payload } = {}) => {
-  console.log('batch reducer');
   switch(type) {
     case CREATE_BATCH :
       return [Object.assign({}, payload)].concat(state)

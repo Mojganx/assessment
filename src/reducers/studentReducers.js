@@ -1,4 +1,4 @@
-import { SET_STUDENT } from '../actions/batch/setChosenStudent'
+import { SET_STUDENT } from '../actions/batch/studentActions';
 
 export default (state = {}, action) => {
   switch(action.type) {
