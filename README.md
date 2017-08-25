@@ -1,3 +1,8 @@
+
+The purpose of this app was to help the teachers at Codaisseur to evaluate students based on their performance in class. 
+As a user (teacher), a button “ASK A QUESTION” can be clicked. It shows the name and picture of a random student to ask a question. Not entirely random though: RED students get 50% of the questions YELLOW students 30%, and GREEN students 20%. 
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
